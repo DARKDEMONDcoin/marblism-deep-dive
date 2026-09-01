@@ -19,7 +19,9 @@ export function Nav() {
     <header
       className={cn(
         "fixed inset-x-0 top-0 z-50 transition-all duration-500",
-        scrolled ? "glass border-b border-border/70 py-2 shadow-card" : "py-4",
+        scrolled
+          ? "glass border-b border-border/70 py-2 text-foreground shadow-card"
+          : "py-4 text-white",
       )}
     >
       <nav className="mx-auto flex max-w-6xl items-center justify-between gap-6 px-5">
@@ -38,7 +40,10 @@ export function Nav() {
             <li key={l.href}>
               <a
                 href={l.href}
-                className="relative rounded-lg px-3.5 py-2 text-[0.95rem] font-medium text-ink-soft transition-colors hover:text-primary"
+                className={cn(
+                  "relative rounded-lg px-3.5 py-2 text-[0.95rem] font-medium transition-colors",
+                  scrolled ? "text-ink-soft hover:text-primary" : "text-white/85 hover:text-white",
+                )}
               >
                 {l.label}
               </a>
@@ -49,13 +54,19 @@ export function Nav() {
         <div className="hidden items-center gap-2 md:flex">
           <a
             href="#pricing"
-            className="rounded-full px-4 py-2 text-sm font-semibold text-ink-soft transition-colors hover:text-primary"
+            className={cn(
+              "rounded-full px-4 py-2 text-sm font-semibold transition-colors",
+              scrolled ? "text-ink-soft hover:text-primary" : "text-white/85 hover:text-white",
+            )}
           >
             تسجيل الدخول
           </a>
           <a
             href="#cta"
-            className="group relative overflow-hidden rounded-full bg-foreground px-5 py-2.5 text-sm font-bold text-background transition-transform duration-300 hover:-translate-y-0.5"
+            className={cn(
+              "group relative overflow-hidden rounded-full px-5 py-2.5 text-sm font-bold transition-transform duration-300 hover:-translate-y-0.5",
+              scrolled ? "bg-foreground text-background" : "bg-white text-ink",
+            )}
           >
             <span className="relative z-10">ابدأ مجاناً</span>
             <span
@@ -68,7 +79,10 @@ export function Nav() {
         <button
           onClick={() => setOpen((v) => !v)}
           aria-label="القائمة"
-          className="grid size-10 place-items-center rounded-xl border border-border md:hidden"
+          className={cn(
+            "grid size-10 place-items-center rounded-xl border md:hidden",
+            scrolled ? "border-border" : "border-white/30 text-white",
+          )}
         >
           {open ? <X className="size-5" /> : <Menu className="size-5" />}
         </button>
